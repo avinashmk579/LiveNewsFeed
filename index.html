@@ -1,11 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="noir">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Global Wire — Live News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="Newsss.css">
 </head>
 <body>
-    
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <p class="eyebrow">Daily Dispatch · Live Edition</p>
+        <h1 class="logo"><i class="ti ti-bolt"></i>Global Wire</h1>
+      </div>
+      <div class="masthead-right">
+        <div class="clock">
+          <div class="clock-time" id="clockTime">--:--</div>
+          <div class="clock-date" id="clockDate">— — —</div>
+        </div>
+        <div class="theme-switch" role="group" aria-label="Choose edition theme">
+          <button class="theme-btn active" data-theme-btn="noir" aria-pressed="true" title="Noir edition"></button>
+          <button class="theme-btn" data-theme-btn="paper" aria-pressed="false" title="Paper edition"></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker" aria-label="Latest headlines, scrolling">
+    <span class="ticker-label"><i class="ti ti-broadcast"></i>&nbsp;WIRE</span>
+    <div class="ticker-track">
+      <div class="ticker-content" id="tickerContent">Tuning into the wire…</div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="cat-nav" id="categoryBox" aria-label="Browse by section"></nav>
+      <button class="saved-toggle" id="savedToggle">
+        <span class="label"><i class="ti ti-bookmark"></i> Saved stories</span>
+        <span class="badge" id="savedCount">0</span>
+      </button>
+      <div class="sidebar-foot">
+        <label class="live-toggle">
+          <input type="checkbox" id="liveToggle" checked />
+          Watch for new stories
+        </label>
+      </div>
+      <p class="sidebar-note">Reporting live from the Guardian Open Platform. Stories refresh automatically while you read.</p>
+    </aside>
+
+    <main class="content">
+      <div class="controls-bar">
+        <form class="search-form" id="searchForm" role="search">
+          <i class="ti ti-search"></i>
+          <input type="text" id="searchInput" placeholder="Search the wire — Modi, AI, cricket…" aria-label="Search news" autocomplete="off" />
+          <button type="button" class="clear-btn" id="clearSearch" hidden aria-label="Clear search"><i class="ti ti-x"></i></button>
+        </form>
+        <select class="sort-select" id="sortSelect" aria-label="Sort order">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="relevance">Most relevant</option>
+        </select>
+      </div>
+
+      <div class="new-banner" id="newBanner" hidden>
+        <span><i class="ti ti-sparkles"></i> Fresh stories just landed on the wire</span>
+        <button id="refreshBtn">Refresh feed</button>
+      </div>
+
+      <p class="status" id="statusText" aria-live="polite">Tuning in…</p>
+
+      <section id="heroSlot"></section>
+      <section class="grid" id="newsGrid"></section>
+      <div class="pagination" id="pagination"></div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Article detail">
+      <button class="modal-close" id="modalClose" aria-label="Close article"><i class="ti ti-x"></i></button>
+      <div id="modalInner"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="ti ti-bookmark-filled"></i><span id="toastText"></span></div>
+
+  <footer class="site-foot">
+    <p>Stories sourced from the Guardian Open Platform. Global Wire is an independent reading companion, not affiliated with the Guardian.</p>
+  </footer>
+  <script src="Newsss.js"></script>
 </body>
 </html>
